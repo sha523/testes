@@ -27,4 +27,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok && ngrok config add-authtoken 2HgKCJ1mPXhqsuEVh8lReVJ4jGd_6xHSPVjjnetw6yafFHPzQ && nohup ngrok tcp 8080 &>> activity.log && apt install php && php -S localhost:8080
+        run: curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok && ngrok config add-authtoken 2HgKCJ1mPXhqsuEVh8lReVJ4jGd_6xHSPVjjnetw6yafFHPzQ 
+      - name: ngrok
+        run: nohup ngrok tcp 4080 &>> activity.log &
+      - name: Run a php
+        run: php -S localhost:4080
